@@ -4,7 +4,7 @@
         "name": "Benjamin",
         "lastname": "Briceño",
         "email": "benjitaxxxx@gmail.com",
-        "rol": "full stack dev",
+        "rol": "Product Owner",
         "active": true
     },
     {
@@ -24,11 +24,11 @@
         "active": true
     },
     {
-        "id": "a959b225-732a-4965-ad06-31ff8794f07f",
         "name": "David",
         "lastname": "Catalan",
         "email": "The_Davidszzzzz@gmail.com",
-        "rol": "Product Owner",
+        "rol": "Gerente de Desarrollo",
+        "id": "1141dfbc-643e-4910-bc6d-ff66326a4501",
         "active": true
     }
 ]
