@@ -42,7 +42,7 @@ export const updateData = async(id, newData, pathData) => {
         const data = await readFile(pathData);
         const indexData  = data.findIndex(dataFound => dataFound.id === id);
 
-        if(indexData === -1) throw new Error('No pudimos Encontrar el dato que buscas')
+        if(indexData === -1) console.error('No pudimos Encontrar el dato que buscas')
         
         //Cortesía: Devolver el dato anterior para comparar
         const oldData = {...data[indexData]}
@@ -54,6 +54,6 @@ export const updateData = async(id, newData, pathData) => {
         return oldData
 
     } catch (error) {
-        throw new Error('No pudimos actualizar la data')
+        console.error('No pudimos actualizar la data')
     }
 }

@@ -4,7 +4,7 @@ export const crearNuevoUsuario = async(req, res) => {
     try {
         const data = req.body
         const usuario = await Usuario.crear(data);
-
+        
         res.status(201).json({
             message: 'Usuario Creado con éxito',
             status: 201,

@@ -60,3 +60,26 @@ export const obtenerProductoPorId = async(req, res) => {
         });
     }
 }
+
+
+export const actualizarProducto = async(req, res) => {
+    try {
+        const { id } = req.params
+        const data = req.body
+
+        const actualizarProducto = await Producto.actualizar(id, data)
+
+        res.status(201).json({
+            message: 'Producto Actualizado',
+            status: 201,
+            oldData: actualizarProducto,
+            newData: data
+        })
+    } catch (error) {
+        res.status(500).json({
+          message: "Error al actualizar el producto",
+          status: 500,
+          error,
+        });
+    }
+}

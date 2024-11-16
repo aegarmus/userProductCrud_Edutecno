@@ -3,9 +3,9 @@
         "id": "9c466b72-800b-47c6-9520-cfe0990429e0",
         "name": "Alessi Q88 MIDI controller",
         "description": "Controlador MIDI Alessi de 88 teclas USB",
-        "price": 200000,
+        "price": 100000,
         "stock": 15,
-        "visible": true
+        "active": true
     },
     {
         "id": "dcb0acf8-0bb5-4b8d-aa2a-055d0bddc1fd",

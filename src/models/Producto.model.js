@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
-import { createDataFile, getAllData, getDataById } from '../utils/fileUtils.js';
+import { createDataFile, getAllData, getDataById, updateData } from '../utils/fileUtils.js';
 
 export class Producto {
     #id
@@ -100,5 +100,14 @@ export class Producto {
         } catch (error) {
             throw new Error("Error al obtener los datos del producto");
         }
+    }
+
+    static async actualizar(id, data) {
+        try {
+            const actualizarProducto = await updateData(id, data, 'productos.json')
+            return actualizarProducto
+        } catch (error) {
+            console.error(`Fallo al actualizar el producto, Error: ${error}`);
+        } 
     }
 }
