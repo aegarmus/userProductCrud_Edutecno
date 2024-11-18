@@ -1,6 +1,7 @@
 import { Router } from 'express'
 import { 
     actualizarUsuario, 
+    borrarUsuario, 
     crearNuevoUsuario, 
     eliminarPermanenteUsuario, 
     obtenerTodosLosUsuarios, 
@@ -14,6 +15,7 @@ router.post('/usuario', crearNuevoUsuario);
 router.get('/usuario', obtenerTodosLosUsuarios);
 router.get('/usuario/:id', obtenerUsuarioPorId);
 router.put('/usuario/:id', actualizarUsuario);
+router.put("/usuario/delete/:id", borrarUsuario);
 router.delete("/usuario/:id", eliminarPermanenteUsuario);
 
 

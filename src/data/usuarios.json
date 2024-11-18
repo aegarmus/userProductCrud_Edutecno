@@ -22,5 +22,13 @@
         "rol": "Gerente de Desarrollo",
         "id": "1141dfbc-643e-4910-bc6d-ff66326a4501",
         "active": true
+    },
+    {
+        "id": "8d039df5-6fa5-46b5-8ae3-0a4575e5376b",
+        "name": "Benjamin",
+        "lastname": "Briceño",
+        "email": "benjitaxxxx@gmail.com",
+        "rol": "Product Owner",
+        "active": true
     }
 ]

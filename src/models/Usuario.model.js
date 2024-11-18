@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
-import { createDataFile, getAllData, getDataById, permaDeleteData, updateData } from "../utils/fileUtils.js";
+import { createDataFile, getAllData, getDataById, permaDeleteData, softDeleteData, updateData } from "../utils/fileUtils.js";
 
 
 export class Usuario {
@@ -62,8 +62,17 @@ export class Usuario {
     this.#email = newEmail
   }
 
-  setActive() {
+/*   setActive() {
     this.#active = !this.#active
+  } */
+
+  desactivate() {
+    console.log(this.#active)
+    this.#active = false
+  }
+
+  activate() {
+    this.#active = true
   }
 
   getAllProperties() {
@@ -124,6 +133,16 @@ export class Usuario {
       return usuarioBorrar
     } catch (error) {
       throw new Error(`Fallo al eliminar permanente el usuario, Error: ${error}`);
+    }
+  }
+
+  static async delete(id) {
+    try {
+      await softDeleteData(id, 'usuarios.json')
+    } catch (error) {
+      throw new Error(
+        `Fallo al eliminar el usuario, Error: ${error}`
+      );
     }
   }
 }

@@ -77,3 +77,23 @@ export const permaDeleteData = async(id, pathData) => {
         console.error("No pudimos actualizar la data");
     }
 }
+
+
+export const softDeleteData = async(id, pathData) => {
+    try {
+        const data = await readFile(pathData);
+
+        const indexData = data.findIndex(dataFound => dataFound.id === id)
+        if (indexData === -1) throw new Error(`No pudimos encontrar la data`);
+
+        console.log(data[indexData])
+
+        console.log(data[indexData].desactivate());
+        data[indexData].desactivate();
+        console.log(data)
+
+        await createFile(data, pathData)
+    } catch (error) {
+        console.error("No pudimos actualizar la data");
+    }
+}

@@ -103,3 +103,22 @@ export const eliminarPermanenteUsuario = async(req, res) => {
         });
     }
 }
+
+export const borrarUsuario = async(req, res) => {
+    try {
+        const { id } = req.params
+        await Usuario.delete(id);
+
+         res.status(200).json({
+            message: `Usuario con id ${id} Borrado con éxito`,
+            status: 200,
+        })
+
+    }catch (error) {
+        res.status(500).json({
+          message: "Error al Eliminar el usuario",
+          status: 500,
+          error,
+        });
+    }
+}
