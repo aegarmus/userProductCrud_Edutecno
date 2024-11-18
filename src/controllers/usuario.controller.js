@@ -82,3 +82,24 @@ export const actualizarUsuario = async(req, res) => {
          });
     }
 }
+
+
+export const eliminarPermanenteUsuario = async(req, res) => {
+    try {
+        const { id } = req.params
+
+        const usuarioBorrar = await Usuario.borrarForEvaaa(id)
+
+        res.status(200).json({
+            message: `Usuario con id ${id} Borrado con éxito`,
+            status: 200,
+            dataDeleted: usuarioBorrar
+        })
+    } catch (error) {
+        res.status(500).json({
+          message: "Error al Eliminar el usuario",
+          status: 500,
+          error,
+        });
+    }
+}

@@ -1,5 +1,11 @@
 import { v4 as uuidv4 } from 'uuid';
-import { createDataFile, getAllData, getDataById, updateData } from '../utils/fileUtils.js';
+import { 
+    createDataFile, 
+    getAllData, 
+    getDataById, 
+    permaDeleteData, 
+    updateData 
+} from '../utils/fileUtils.js';
 
 export class Producto {
     #id
@@ -109,5 +115,17 @@ export class Producto {
         } catch (error) {
             console.error(`Fallo al actualizar el producto, Error: ${error}`);
         } 
+    }
+
+    static async eliminarTheReal(id) {
+        try {
+            const productoBorrar = await permaDeleteData(id, 'productos.json');
+            return productoBorrar
+        } catch (error) {
+            throw new Error(
+              `Fallo al eliminar permanente el producto, Error: ${error}`
+            );
+        }
+
     }
 }

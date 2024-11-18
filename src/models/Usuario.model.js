@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
-import { createDataFile, getAllData, getDataById, updateData } from "../utils/fileUtils.js";
+import { createDataFile, getAllData, getDataById, permaDeleteData, updateData } from "../utils/fileUtils.js";
 
 
 export class Usuario {
@@ -115,6 +115,15 @@ export class Usuario {
       return actualizarUsuario
     } catch (error) {
       throw new Error(`Fallo al actualizar el usuario, Error: ${error}`);
+    }
+  }
+
+  static async borrarForEvaaa(id) {
+    try {
+      const usuarioBorrar = await permaDeleteData(id, 'usuarios.json');
+      return usuarioBorrar
+    } catch (error) {
+      throw new Error(`Fallo al eliminar permanente el usuario, Error: ${error}`);
     }
   }
 }

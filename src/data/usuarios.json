@@ -1,13 +1,5 @@
 [
     {
-        "id": "d976c758-a195-43e3-b4da-777bdc37270c",
-        "name": "Benjamin",
-        "lastname": "Briceño",
-        "email": "benjitaxxxx@gmail.com",
-        "rol": "Product Owner",
-        "active": true
-    },
-    {
         "id": "63ff3c99-b39b-48e8-b238-4c1cbc47a20f",
         "name": "Carolina",
         "lastname": "Lopez",

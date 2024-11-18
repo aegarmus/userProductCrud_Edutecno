@@ -14,13 +14,5 @@
         "price": 180000,
         "stock": 5,
         "visible": true
-    },
-    {
-        "id": "523a2da9-a038-458a-95f7-91d642507a73",
-        "name": "Xiaomi Poco X3 Pro",
-        "description": "Smarthphone",
-        "price": 180000,
-        "stock": 6,
-        "visible": true
     }
 ]

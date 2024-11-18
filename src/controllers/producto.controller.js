@@ -83,3 +83,24 @@ export const actualizarProducto = async(req, res) => {
         });
     }
 }
+
+
+export const eliminarPermanenteProducto = async(req, res) => {
+    try {
+        const { id } = req.params;
+
+        const productoBorrar = await Producto.eliminarTheReal(id);
+
+        res.status(200).json({
+            message: 'Producto eliminado',
+            status: 200,
+            dataDeleted: productoBorrar
+        })
+    } catch (error) {
+        res.status(500).json({
+          message: "Error al Eliminar el producto",
+          status: 500,
+          error,
+        });
+    }
+}
