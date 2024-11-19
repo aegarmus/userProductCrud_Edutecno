@@ -47,6 +47,9 @@ export class Usuario {
     return this.#active
   }
 
+  setId(newId) {
+    this.#id = newId
+  }
 
   setName(newName) {
     //validar name
@@ -66,12 +69,12 @@ export class Usuario {
     this.#active = !this.#active
   } */
 
-  desactivate() {
+  desactive() {
     console.log(this.#active)
     this.#active = false
   }
 
-  activate() {
+  active() {
     this.#active = true
   }
 
@@ -83,6 +86,18 @@ export class Usuario {
         email: this.#email,
         rol: this.#rol,
         active: this.#active
+    }
+  }
+
+  static formatearInstancea(objeto) {
+    try {
+        const { id, name, lastname, email, rol } = objeto;
+        const nuevaInstancia = new Usuario(name, lastname, email, rol);
+        nuevaInstancia.setId(id)
+
+        return nuevaInstancia
+    } catch (error) {
+        console.error('Problemas al formatear la instancia de Usuario')
     }
   }
 
@@ -138,7 +153,7 @@ export class Usuario {
 
   static async delete(id) {
     try {
-      await softDeleteData(id, 'usuarios.json')
+      await softDeleteData(id, 'usuarios.json', Usuario)
     } catch (error) {
       throw new Error(
         `Fallo al eliminar el usuario, Error: ${error}`
