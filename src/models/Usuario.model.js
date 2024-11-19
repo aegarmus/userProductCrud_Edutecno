@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
-import { createDataFile, getAllData, getDataById, permaDeleteData, softDeleteData, updateData } from "../utils/fileUtils.js";
+import { createDataFile, getActiveDatabyId, getAllActiveData, getAllData, getDataById, permaDeleteData, softDeleteData, updateData } from "../utils/fileUtils.js";
 
 
 export class Usuario {
@@ -158,6 +158,24 @@ export class Usuario {
       throw new Error(
         `Fallo al eliminar el usuario, Error: ${error}`
       );
+    }
+  }
+
+  static async obtenerUsuariosActivos() {
+    try {
+      const usuarios = await getAllActiveData('usuarios.json');
+      return usuarios
+    } catch (error) {
+      throw new Error("Error al obtener los datos del usuario");
+    }
+  }
+
+  static async obtenerUsuarioActivoPorId(id) {
+    try {
+      const usuario = await getActiveDatabyId(id, 'usuarios.json');
+      return usuario
+    } catch (error) {
+      throw new Error("Error al obtener los datos del usuario");
     }
   }
 }

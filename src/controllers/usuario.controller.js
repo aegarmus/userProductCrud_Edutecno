@@ -122,3 +122,40 @@ export const borrarUsuario = async(req, res) => {
         });
     }
 }
+
+export const obtenerTodosLosUsuariosActivos = async(req, res) => {
+    try {
+        const usuarios = await Usuario.obtenerUsuariosActivos();
+
+        res.status(200).json({
+            message: "Usuarios obtenidos con éxito",
+            status: 200,
+            data: usuarios
+        })
+    } catch(error){
+        res.status(500).json({
+          message: "Error al obtener los usuarios",
+          status: 500,
+          error,
+        });
+    }
+}
+
+export const obtenerUsuarioActivoPorId = async(req, res) => {
+    try {
+        const { id } = req.params;
+        const usuario = await Usuario.obtenerUsuarioActivoPorId(id)
+
+        res.status(200).json({
+          message: "Usuarios obtenidos con éxito",
+          status: 200,
+          data: usuario,
+        });
+    } catch (error) {
+        res.status(500).json({
+          message: "Error al obtener los usuarios",
+          status: 500,
+          error,
+        });
+    }
+}
