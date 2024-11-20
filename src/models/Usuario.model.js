@@ -1,5 +1,8 @@
 import { v4 as uuidv4 } from "uuid";
 import { createDataFile, getActiveDatabyId, getAllActiveData, getAllData, getDataById, permaDeleteData, softDeleteData, updateData } from "../utils/fileUtils.js";
+import { Validate } from "../utils/Validaciones.js";
+
+import { VALID_ROLES } from "../utils/constants/validRoles.js";
 
 
 export class Usuario {
@@ -12,10 +15,10 @@ export class Usuario {
 
   constructor(name, lastname, email, rol) {
     this.#id = uuidv4()
-    this.#name = name; //Tenemos que validar esto
-    this.#lastname = lastname;
-    this.#email = email;
-    this.#rol = rol;
+    this.#name = Validate.userName(name, 'Nombre'); 
+    this.#lastname = Validate.userName(lastname, 'Apellido');
+    this.#email = Validate.email(email);
+    this.#rol = Validate.rol(rol, VALID_ROLES);
     this.#active = true;
   }
 
@@ -52,17 +55,42 @@ export class Usuario {
   }
 
   setName(newName) {
-    //validar name
-    this.#name = newName
+    try {
+      Validate.userName(newName, 'Nombre');
+      this.#name = newName
+      
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   setLastname(newLastname) {
-    //validar lastname
-    this.#lastname = newLastname
+    try {
+      Validate.userName(newLastname, 'Apellido');
+      this.#lastname = newLastname
+      
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   setEmail(newEmail) {
-    this.#email = newEmail
+    try {
+      Validate.email(email)
+      this.#email = newEmail
+      
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  setRol(newRol) {
+    try {
+      Validate.rol(newRol, VALID_ROLES)
+      this.#rol = newRol
+    } catch (error) {
+      console.error(error);
+    }
   }
 
 /*   setActive() {
