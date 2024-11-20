@@ -6,6 +6,7 @@ import {
     permaDeleteData, 
     updateData 
 } from '../utils/fileUtils.js';
+import { Validate } from '../utils/Validaciones.js';
 
 export class Producto {
     #id
@@ -17,10 +18,10 @@ export class Producto {
 
     constructor(name, description, price, stock) {
         this.#id = uuidv4()
-        this.#name = name;
-        this.#description = description;
-        this.#price = price;
-        this.#stock = stock;
+        this.#name = Validate.productText(name, "Nombre");
+        this.#description = Validate.userName(description, "Descripción");
+        this.#price = Validate.amount(price, 'Precio');
+        this.#stock = Validate.amount(stock, 'Stock');
         this.#visible = stock > 0
     }
 
@@ -45,22 +46,39 @@ export class Producto {
     }
 
     setName(newName) {
-        //validar
-        this.#name = newName
+        try {
+          Validate.userName(newName, "Nombre");
+          this.#name = newName;
+        } catch (error) {
+          console.error(error);
+        }
     }
 
     setDescription(newDescription) {
-        //validar
-        this.#description = newDescription
+        try {
+          Validate.userName(newDescription, "Descripción");
+          this.#name = newName;
+        } catch (error) {
+          console.error(error);
+        }
     }
 
     setPrice(newPrice) {
-        //validar
-        this.#price = newPrice
+        try {
+          Validate.amount(newPrice, "Precio");
+          this.#price = newPrice;
+        } catch (error) {
+          console.error(error);
+        }
     }
 
     setStock(newStock) {
-        this.#stock = newStock
+        try {
+          Validate.amount(newStock, "Stock");
+          this.#stock = newStock;
+        } catch (error) {
+          console.error(error);
+        }    
     }
 
     getAllProperties() {
