@@ -30,5 +30,13 @@
         "email": "benjitaxxxx@gmail.com",
         "rol": "Product Owner",
         "active": false
+    },
+    {
+        "id": "6d843929-65dc-4a43-9b08-a6a4838dfc8c",
+        "name": "Alfonso",
+        "lastname": "Briceño",
+        "email": "benjitaxxxx@gmail.com",
+        "rol": "Product Owner",
+        "active": true
     }
 ]

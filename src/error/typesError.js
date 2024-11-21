@@ -1,9 +1,15 @@
 import AppError from "./AppError.js";
 
+
 export class ValidationError extends AppError {
-    constructor(message, details) {
-        super(message || 'Error de Validación', 400, details)
-    }
+  /**
+   * ValidationError se encarga de crear una instancia de Error para las validaciones devolviendo siempre un codigo de estado 400
+   * @param {string} message - Mensaje que se desea enviar en el error
+   * @param {object} [details] - detalles sobre el error que acaba de ocurrir
+   */
+  constructor(message, details) {
+    super(message || "Error de Validación", 400, details);
+  }
 }
 
 export class NotFoundError extends AppError {

@@ -3,6 +3,7 @@ import { createDataFile, getActiveDatabyId, getAllActiveData, getAllData, getDat
 import { Validate } from "../utils/Validaciones.js";
 
 import { VALID_ROLES } from "../utils/constants/validRoles.js";
+import { InternalServerError, ValidationError } from "../error/typesError.js";
 
 
 export class Usuario {
@@ -60,7 +61,7 @@ export class Usuario {
       this.#name = newName
       
     } catch (error) {
-      console.error(error)
+      throw new ValidationError('Error al modificar el campo nombre',error)
     }
   }
 
@@ -70,7 +71,7 @@ export class Usuario {
       this.#lastname = newLastname
       
     } catch (error) {
-      console.error(error);
+      throw new ValidationError('Error al modificar el campo apellido',error);
     }
   }
 
@@ -80,7 +81,7 @@ export class Usuario {
       this.#email = newEmail
       
     } catch (error) {
-      console.error(error);
+      throw new ValidationError('Error al modificar el campo email',error);
     }
   }
 
@@ -89,7 +90,7 @@ export class Usuario {
       Validate.rol(newRol, VALID_ROLES)
       this.#rol = newRol
     } catch (error) {
-      console.error(error);
+      throw new ValidationError('Error al modificar el campo rol',error);
     }
   }
 
@@ -125,7 +126,7 @@ export class Usuario {
 
         return nuevaInstancia
     } catch (error) {
-        console.error('Problemas al formatear la instancia de Usuario')
+        throw new InternalServerError('Problemas al formatear la instancia de Usuario', error)
     }
   }
 
@@ -139,7 +140,7 @@ export class Usuario {
   
       return usuarioObject
     } catch (error) {
-      throw new Error(`Fallo al crear un nuevo usuario, Error: ${error}`)
+      throw new InternalServerError(`Fallo al crear un nuevo usuario`, error)
     }
   }
 
@@ -148,7 +149,7 @@ export class Usuario {
       const usuarios = await getAllData('usuarios.json')
       return usuarios
     } catch (error) {
-      throw new Error('Error al obtener los datos del usuario')
+      throw new InternalServerError('Error al obtener los datos del usuario', error)
     }
   }
 
@@ -157,7 +158,7 @@ export class Usuario {
       const usuario = await getDataById(id, 'usuarios.json')
       return usuario
     } catch (error) {
-      throw new Error("Error al obtener los datos del usuario");
+      throw new InternalServerError("Error al obtener los datos del usuario", error);
     }
   }
 
@@ -166,7 +167,7 @@ export class Usuario {
       const actualizarUsuario = await updateData(id, data, 'usuarios.json')
       return actualizarUsuario
     } catch (error) {
-      throw new Error(`Fallo al actualizar el usuario, Error: ${error}`);
+      throw new InternalServerError(`Fallo al actualizar el usuario`, error);
     }
   }
 
@@ -175,7 +176,7 @@ export class Usuario {
       const usuarioBorrar = await permaDeleteData(id, 'usuarios.json');
       return usuarioBorrar
     } catch (error) {
-      throw new Error(`Fallo al eliminar permanente el usuario, Error: ${error}`);
+      throw new InternalServerError(`Fallo al eliminar permanente el usuario`, error);
     }
   }
 
@@ -183,9 +184,7 @@ export class Usuario {
     try {
       await softDeleteData(id, 'usuarios.json', Usuario)
     } catch (error) {
-      throw new Error(
-        `Fallo al eliminar el usuario, Error: ${error}`
-      );
+      throw new InternalServerError(`Fallo al eliminar el usuario`, error);
     }
   }
 
@@ -194,7 +193,7 @@ export class Usuario {
       const usuarios = await getAllActiveData('usuarios.json');
       return usuarios
     } catch (error) {
-      throw new Error("Error al obtener los datos del usuario");
+      throw new InternalServerError("Error al obtener los datos del usuario", error);
     }
   }
 
@@ -203,7 +202,7 @@ export class Usuario {
       const usuario = await getActiveDatabyId(id, 'usuarios.json');
       return usuario
     } catch (error) {
-      throw new Error("Error al obtener los datos del usuario");
+      throw new InternalServerError("Error al obtener los datos del usuario", error);
     }
   }
 }

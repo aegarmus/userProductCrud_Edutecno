@@ -1,6 +1,7 @@
+import { NotFoundError } from "../error/typesError.js";
 import { Usuario } from "../models/Usuario.model.js"
 
-export const crearNuevoUsuario = async(req, res) => {
+export const crearNuevoUsuario = async(req, res, next) => {
     try {
         const data = req.body
         const usuario = await Usuario.crear(data);
@@ -11,11 +12,7 @@ export const crearNuevoUsuario = async(req, res) => {
             data: usuario
         })
     } catch (error) {
-        res.status(500).json({
-            message: 'Error al creare al usuario',
-            status: 500,
-            error
-        })
+        next(error)
     }
 }
 
@@ -23,7 +20,7 @@ export const obtenerTodosLosUsuarios = async(req, res) => {
     try {
         const data = await Usuario.encontrarTodos();
 
-        if(!data) throw new Error('No existen los datos')
+        if(!data) throw new NotFoundError('No existen los datos', `No se encontraron los datos solictadoes en la ruta correspondiente`)
 
         res.status(200).json({
             message: 'Usuarios Encontrados!',
@@ -45,7 +42,7 @@ export const obtenerUsuarioPorId = async(req, res) => {
         const { id } = req.params;
         const data = await Usuario.encontrarPorId(id);
 
-        if (!data) throw new Error("La data se encuentra vacía");
+        if (!data) throw new NotFoundError("La data se encuentra vacía", `No encontramos el id: ${id}`);
 
         res.status(200).json({
             messsage: 'Usuario Encontrado',
