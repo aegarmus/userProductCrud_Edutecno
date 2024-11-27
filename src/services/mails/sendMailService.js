@@ -10,16 +10,17 @@ import { emailHTMLtemplate } from "./mailTemplate.js";
  * @returns - Detalle del envio
  */
 
-export const sendMailService = async({ to, subject, message, title }) => {
+export const sendMailService = async({ to, subject, message/* , title, despeidda */ }) => {
     try {
 
-        const htmlTemplate = emailHTMLtemplate(title, message);
-        
+        /* const htmlTemplate = emailHTMLtemplate(title, message, despedida); */
+
         const mailOptions = {
             from: process.env.SMTP_USER,
             to: to.join(', '),
             subject,
-            html: htmlTemplate
+            text: message
+           /*  html: htmlTemplate */
         }
 
         const infoData = await transporter.sendMail(mailOptions);
