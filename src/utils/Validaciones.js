@@ -50,4 +50,9 @@ export class Validate {
       throw new ValidationError(`${fieldName} debe ser un número mayor que 0`, 'Verifica que sea un dato numerico y mayor que 0');
     return value;
   }
+
+  static emailContent(subject, message, recipients) {
+    if (!subject || !message || !recipients) throw new ValidationError('Todos los campos del email deben ser cubiertos')
+    return { subject, message, to: recipients}
+  }
 }
