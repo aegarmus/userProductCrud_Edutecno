@@ -1,0 +1,8 @@
+{
+    "spec": "src/test/**/*.test.js",
+    "extension": ["js"],
+    "recursive": true,
+    "reporter": "spec",
+    "exit": true,
+    "timeout": 10000
+}

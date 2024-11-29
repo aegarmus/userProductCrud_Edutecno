@@ -31,3 +31,5 @@ app.listen(PORT, async() => {
     }
     console.log(`El servidor esta arriba en el puerto: ${PORT} 👌`)
 })
+
+export default app

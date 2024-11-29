@@ -38,5 +38,29 @@
         "email": "benjitaxxxx@gmail.com",
         "rol": "Product Owner",
         "active": true
+    },
+    {
+        "id": "a5156187-0ea2-40a2-a658-2ee51f6f5d9a",
+        "name": "Juanito",
+        "lastname": "Adasme",
+        "email": "juanitoDwarf@gmail.com",
+        "rol": "tech lead",
+        "active": true
+    },
+    {
+        "id": "efc7bec5-b6b1-442b-bb89-a3892af7018f",
+        "name": "Juanito",
+        "lastname": "Adasme",
+        "email": "juanitoDwarf@gmail.com",
+        "rol": "Gerente de Desarrollo",
+        "active": true
+    },
+    {
+        "id": "e64d8194-6749-4a42-a856-5b4fe8b5ec20",
+        "name": "Juanito",
+        "lastname": "Adasme",
+        "email": "juanitoDwarf@gmail.com",
+        "rol": "tech lead",
+        "active": true
     }
 ]

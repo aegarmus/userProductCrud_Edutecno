@@ -13,6 +13,7 @@ export const transporter = nodemailer.createTransport({
   },
 });
 
+
 export const verifyConnectionMail = async() => {
     try {
         await transporter.verify();
